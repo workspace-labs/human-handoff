@@ -103,6 +103,20 @@ Any other agent that reads Agent Skills takes the same folder in its own skills 
 
 > Read the handoff. Say accept, ask, or don't accept — and why. On don't accept, hand over the fix prompt too. Then wait: the person decides.
 
+## Reminder: update every machine
+
+The installed copy does not update itself. After a change lands in this repository, update the skill on **each** machine that runs it, including the Mac.
+
+For Claude Code:
+
+```bash
+npx skills add workspace-labs/human-handoff -g
+```
+
+For Codex, copy the folder again into `~/.codex/skills/`. If the skill is linked from a clone, run `git pull` in that clone instead. Then open a fresh session; skills are indexed at session start.
+
+Quick check that the installed copy is current: paste a builder report whose own test output shows a failing test. The answer should be DO NOT ACCEPT with a `Corrective prompt:` block in the same reply. If it only offers to write the prompt after you agree, the old copy is still installed.
+
 ---
 
 <sub>by Workspace Labs</sub>
