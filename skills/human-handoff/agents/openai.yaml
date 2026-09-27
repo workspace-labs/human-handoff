@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human Handoff"
+  short_description: "Turn a finished agent handoff into a short ACCEPT, CLARIFICATION REQUIRED or DO NOT ACCEPT recommendation for the human"
+  default_prompt: "Use $human-handoff to assess this finished agent handoff and give me your recommendation."
