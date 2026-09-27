@@ -4,7 +4,7 @@
 
 Human Handoff is an Agent Skill. It turns a finished agent handoff, a delivery or a review, into a short recommendation: what happened, one of three answers, and why. It works with any model that reads Agent Skills: Claude, Codex, Kimi, Grok or a terminal agent. It was made for everyday agent sessions outside the author's own board, Workspace, which has review gates of its own, so it steps aside there.
 
-The skill is one file — [`skills/human-handoff/SKILL.md`](skills/human-handoff/SKILL.md).
+The skill is one file — [`skills/human-handoff/SKILL.md`](skills/human-handoff/SKILL.md) — plus a small [`agents/openai.yaml`](skills/human-handoff/agents/openai.yaml) that gives Codex its display name and a ready-made prompt.
 
 ---
 
@@ -27,6 +27,9 @@ Do not: add features, clean up, or change anything else.
 Send back: the full output of the test run, with test_reset_sends_one_email passing.
 
 Your call. The prompt above is ready to paste to the agent that built the work if you agree with the rejection.
+
+Shortcut:
+The report says "task complete" but its own test output shows the one required test failing — paste the prompt above if you agree it goes back.
 ```
 
 *A made-up example: the report said "task complete", and its own test output said otherwise.*
@@ -40,6 +43,8 @@ Your call. The prompt above is ready to paste to the agent that built the work i
 - **DO NOT ACCEPT** — the handoff itself shows a blocking defect or a failed requirement. It writes the fix prompt in the same answer, ready to paste to the agent that built the work, then stops and waits for you.
 
 It recommends. You decide.
+
+Every answer ends with a one-line **Shortcut** — what happened and what to do next, at a glance, without reading the whole block.
 
 ---
 
@@ -115,7 +120,7 @@ npx skills add workspace-labs/human-handoff -g
 
 For Codex, copy the folder again into `~/.codex/skills/`. If the skill is linked from a clone, run `git pull` in that clone instead. Then open a fresh session; skills are indexed at session start.
 
-Quick check that the installed copy is current: paste a builder report whose own test output shows a failing test. The answer should be DO NOT ACCEPT with a `Corrective prompt:` block in the same reply. If it only offers to write the prompt after you agree, the old copy is still installed.
+Quick check that the installed copy is current: paste a builder report whose own test output shows a failing test. The answer should be DO NOT ACCEPT with a `Corrective prompt:` block in the same reply, ending with a `Shortcut:` line. If the Shortcut line is missing, or it only offers to write the prompt after you agree, the old copy is still installed.
 
 ---
 
