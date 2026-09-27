@@ -1,6 +1,6 @@
 ---
 name: human-handoff
-description: "Turns a finished agent handoff into a short recommendation for the human: What happened, then ACCEPT, CLARIFICATION REQUIRED or DO NOT ACCEPT, then Why, judged only from the supplied text. Use when a completed delivery or completed review, your own or another agent's (Claude, Codex, Kimi, Grok, a terminal agent), is handed back to the human for a decision; when the human pastes an agent's final report and wants to know whether to accept it; or when the human asks for human-handoff by name. On DO NOT ACCEPT it also writes, at once, one corrective prompt the human can paste to the agent that built the work. Never opens files or runs commands, and never replaces the builder's or reviewer's own report. Not for progress updates, plans, subtasks inside ongoing work, quoted or old reports, talk about this skill, corrective prompts, earlier Human Handoff summaries, work still headed to an independent reviewer, or Workspace or Backloop board activity."
+description: "Turns a finished agent handoff into a short recommendation for the human: What happened, then ACCEPT, CLARIFICATION REQUIRED or DO NOT ACCEPT, then Why, closing with a one-line Shortcut — what happened and what to do next — judged only from the supplied text. Use when a completed delivery or completed review, your own or another agent's (Claude, Codex, Kimi, Grok, a terminal agent), is handed back to the human for a decision; when the human pastes an agent's final report and wants to know whether to accept it; or when the human asks for human-handoff by name. On DO NOT ACCEPT it also writes, at once, one corrective prompt the human can paste to the agent that built the work. Never opens files or runs commands, and never replaces the builder's or reviewer's own report. Not for progress updates, plans, subtasks inside ongoing work, quoted or old reports, talk about this skill, corrective prompts, earlier Human Handoff summaries, work still headed to an independent reviewer, or Workspace or Backloop board activity."
 ---
 
 # Human Handoff
@@ -79,7 +79,16 @@ Corrective prompt:
 <the one corrective output described under Corrective prompt below>
 ```
 
-and then ends with exactly this line: `Your call. The prompt above is ready to paste to the agent that built the work if you agree with the rejection.`
+and then the closing line, exactly this: `Your call. The prompt above is ready to paste to the agent that built the work if you agree with the rejection.`
+
+Every summary ends with one plain line for a glance — what happened and what the human's next move is:
+
+```
+Shortcut:
+<one line: what happened + what to do next>
+```
+
+For DO NOT ACCEPT the Shortcut follows the closing line; for CLARIFICATION REQUIRED it follows the question; otherwise it follows Why. The Shortcut never carries information the summary has not already said — it is the same message in one line, not a new one.
 
 ## Corrective prompt
 
